@@ -59,44 +59,16 @@ public class CoffeeMachine {
 			return (false);
 		}
 
-		private void	buyEspresso() {
-			if (checkAmountWater(250) &&
-				checkAmountBeans(16) &&
-				checkAmountCups(1)) {
-				System.out.println("I have enough resources, making you a coffee!");
-				amountOfWater -= 250;
-				amountOfBeans -= 16;
-				amountOfMoney += 4;
-				amountOfCups--;
-			}
-		}
-
-		private void	buyLatte() {
-			if (checkAmountWater(350) &&
-				checkAmountMilk(75) &&
-				checkAmountBeans(20) &&
-				checkAmountCups(1)) {
-				System.out.println("I have enough resources, making you a coffee!");
-				amountOfWater -= 350;
-				amountOfMilk -= 75;
-				amountOfBeans -= 20;
-				amountOfMoney += 7;
-				amountOfCups--;
-			}
-		}
-
-		private void	buyCappuccino() {
-			if (checkAmountWater(200) &&
-				checkAmountMilk(100) &&
-				checkAmountBeans(12) &&
-				checkAmountCups(1)) {
-				System.out.println("I have enough resources, making you a coffee!");
-				amountOfWater -= 200;
-				amountOfMilk -= 100;
-				amountOfBeans -= 12;
-				amountOfMoney += 6;
-				amountOfCups--;
-			}
+		private	void buyingProcess(int amountOfWater, int amountOfMilk, int amountOfBeans, int amountOfMoney) {
+			if (checkAmountWater(amountOfWater) && checkAmountMilk(neededAmountOfMilk) &&
+				checkAmountBeans(neededAmountOfBeans) && checkAmountCups(1)) {
+					System.out.println("I have enough resources, making you a coffee!");
+					this.amountOfWater -= amountOfWater;
+					this.amountOfMilk -= amountOfWater;
+					this.amountOfBeans -= amountOfBeans;
+					this.amountOfCups--;
+					this.amountOfMoney += amountOfMoney;
+				}
 		}
 
 		private void	buyCoffee(Scanner scan) {
@@ -106,13 +78,13 @@ public class CoffeeMachine {
 			coffee = scan.nextLine();
 			switch (coffee) {
 				case "1":
-					buyEspresso();
+					buyingProcess(250, 0, 16, 4);
 					break;
 				case "2":
-					buyLatte();
+					buyingProcess(350, 75, 20, 7);
 					break;
 				case "3":
-					buyCappuccino();
+					buyingProcess(200, 100, 12, 6);
 					break;
 				case "back":
 					return;
